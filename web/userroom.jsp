@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>Accommodation Portal</title>
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <%@include file='layoutuser.jsp'%>
+        <div id="main">
+            <div class="col-md-12 container " style="height: 700px">
+                <div class="card">
+                    <div class="card-body"> 
+                            <p>${message}</p>
+                        <div class="col-sm-12">
+                            <div class="card text-center">
+                                    <div class="card-header">
+                                       Your Room Details
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${room.getTypeName()}</h5>
+                                        <p>Location: ${room.getLocation()}</p>
+                                        <p>Monthly Charge: ${room.getMonthlyCharge()}</p>
+                                        <a class="btn btn-primary"
+                                       href="payment" />Pay Rent
+                                    now</a>
+                                    </div>
+
+                                </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
