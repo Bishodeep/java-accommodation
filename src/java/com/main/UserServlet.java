@@ -6,10 +6,7 @@
 package com.main;
 
 import com.authorization.AuthorizationServlet;
-import com.dataaccesslayer.RoomImplementation;
-import com.entitymodel.RoomViewModel;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +20,7 @@ public class UserServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RoomImplementation room = new RoomImplementation();
-        List<RoomViewModel> listRooms = room.GetRooms();
-        request.setAttribute("listRoom", listRooms);
+
         AuthorizationServlet.getPage(request, response, "user").forward(request, response);
     }
 }

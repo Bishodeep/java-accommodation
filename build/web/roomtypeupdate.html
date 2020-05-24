@@ -1,14 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<% HttpSession sessionuser = request.getSession(false);
-    String user = (String) sessionuser.getAttribute("username");
-    String rolename = (String) sessionuser.getAttribute("rolename");
-%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="ISO-8859-1">
         <title>Accommodation Portal</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
         <style>
             .container{
                 padding-top: 5px;
@@ -70,14 +64,33 @@
         </style>
     </head>
     <body>
-
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a class="nav-link" href="user">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="userroom">My Room</a>
+
+            <a href="/index/admin">Home</a>
             <a href="logout">Logout</a>
         </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+        <div id="main">
+            <div class="col-md-12 container "style="height:700px">
+                <div class="card" >
+                    <div class="card-body">
+                        <div class="list-part">
+                            <h4 class="card-title">Edit Room Type</h4>
+
+                            <div class="inner-list-part d-flex">
+                                <form class="form-inline my-2 my-lg-0"  action="admin"  method="get">
+                                    <button class="btn btn-danger my-2 my-sm-0" type="submit">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+                        <form action="roomtypeupdate" method="post" id="rootypeeditform">
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
@@ -92,4 +105,31 @@
                 document.getElementById("mySidenav").style.width = "0";
                 document.getElementById("main").style.marginLeft = "0";
             }
+            function getUrlParameter(sParam) {
+                var sPageURL = window.location.search.substring(1),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                    }
+                }
+            };
+             $(document).ready(function () {
+                 var id = getUrlParameter('id');
+                $.ajax({
+                    url: 'http://localhost:8080/index/datarender?datatype=updateroomtype&&id='+id,
+                    type: 'GET',
+                    dataType: "html",
+                    success: function (responseText) {
+                        $('#rootypeeditform').append(responseText);
+                    },
+                    error: function (request, status, error) {
+                    }
+                });
+            });
 </script>

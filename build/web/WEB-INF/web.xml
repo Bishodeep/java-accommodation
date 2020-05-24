@@ -70,6 +70,16 @@
   </servlet-mapping>
   
   <servlet>
+  <servlet-name>datarender</servlet-name>
+  <servlet-class>com.helper.datarender.DatarenderServlet</servlet-class>
+  </servlet>
+  
+   <servlet-mapping>
+  <servlet-name>datarender</servlet-name>
+  <url-pattern>/datarender</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   <servlet-name>addroom</servlet-name>
   <servlet-class>com.admin.RoomServlet</servlet-class>
   </servlet>

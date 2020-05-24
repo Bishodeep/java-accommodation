@@ -18,35 +18,32 @@ import javax.servlet.http.HttpSession;
  * @author Bishodeep
  */
 public class AuthorizationServlet extends HttpServlet {
-	public static RequestDispatcher getPage(HttpServletRequest request, HttpServletResponse response, String PageName)
-			throws ServletException, IOException {
 
-		HttpSession session = request.getSession(true);
-		String username = (String) session.getAttribute("username");
-		if (username != null) {
-			int userRole = (int) session.getAttribute("roleId");
-                    switch (userRole) {
-                        case 1:
-                        {
-                            RequestDispatcher resDispatcher = request.getRequestDispatcher(PageName + ".jsp");
-                            return resDispatcher;
-                        }
-                        case 2:
-                        {
-                            RequestDispatcher resDispatcher = request.getRequestDispatcher(PageName + ".jsp");
-                            return resDispatcher;
-                        }
-                        default:
-                            break;
-                    }
-			RequestDispatcher resDispatcher = request.getRequestDispatcher("unauthorizedpage.html");
-			return resDispatcher;
-		} else
+    public static RequestDispatcher getPage(HttpServletRequest request, HttpServletResponse response, String PageName)
+            throws ServletException, IOException {
 
-		{
-			RequestDispatcher resDispatcher = request.getRequestDispatcher("errorpage.html");
-			return resDispatcher;
-		}
+        HttpSession session = request.getSession(true);
+        String username = (String) session.getAttribute("username");
+        if (username != null) {
+            int userRole = (int) session.getAttribute("roleId");
+            switch (userRole) {
+                case 1: {
+                    RequestDispatcher resDispatcher = request.getRequestDispatcher(PageName + ".html");
+                    return resDispatcher;
+                }
+                case 2: {
+                    RequestDispatcher resDispatcher = request.getRequestDispatcher(PageName + ".html");
+                    return resDispatcher;
+                }
+                default:
+                    break;
+            }
+            RequestDispatcher resDispatcher = request.getRequestDispatcher("unauthorizedpage.html");
+            return resDispatcher;
+        } else {
+            RequestDispatcher resDispatcher = request.getRequestDispatcher("errorpage.html");
+            return resDispatcher;
+        }
 
-	}
+    }
 }
